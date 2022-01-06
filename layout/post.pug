@@ -1,0 +1,25 @@
+extends includes/layout
+
+
+block content
+  - var tocList = toc(page.content)
+  - var rp = page.rp || config.def_rp || 4
+  - var rpList = ['禁止转载', '需授权后转载', '转载请注明来源']
+
+  .post-item
+  h2.post-title-wrapper
+      p.post-title=page.title
+  if page.date && page.source !== '_posts/about.md'
+      if (rp == 4)
+        div.post-date
+          time(datetime=page.date.toJSON())=date(page.date, date_format)
+      else 
+        div.post-info
+          span
+            time(datetime=page.date.toJSON())=date(page.date, date_format)
+          span.header-center
+          span.rp= rpList[rp - 1]
+          
+  if page.toc == true
+    div.post-toc!= tocList
+  .post-content!= page.content

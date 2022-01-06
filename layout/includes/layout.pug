@@ -1,0 +1,43 @@
+
+- var pageTitle = page.title || config.title || config.subtitle || ''
+
+doctype html
+html(lang=config.language)
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    meta(name='renderer', content='webkit')
+    meta(name='theme-color', content='#FFFFFF')
+    title= pageTitle
+    link(rel='stylesheet', href='/css/normalize.css')
+    <link rel="stylesheet" href="/css/heti.min.css">
+
+    if theme.stylesheets !== undefined && theme.stylesheets.length > 0
+      each url in theme.stylesheets
+        link(rel='stylesheet', href=url)
+    link(rel="icon", href=config.root + 'images/favicon.ico')
+  body
+    div.header
+      a.email-link(href='/')
+        span
+          |Home
+      span.header-center
+      if config.axianyu.show_email == true
+        a.email-link(href='mailto:' + (config.email || theme.email) + '?subject=[Comment] About: ' + pageTitle + '&body=' + (config.email_placeholder || '请在此处书写您的邮件内容') + '%0d%0a%0d%0a--------------------%0d%0aTitle: ' + pageTitle + '%0d%0aUrl: ' + url + '%0d%0a')
+          span
+            |Email
+      if config.axianyu.show_about == true
+        a.subscribe-link(href=config.axianyu.about_url || "/about")
+          span
+            |About
+      if config.axianyu.show_rss == true
+        a.subscribe-link(href="/atom.xml")
+          span
+            |RSS
+    div.content
+      block content
+    div.footer
+        div.footer-copyright
+          | Theme By 
+          a(href="https://github.com/kgysf/hexo-theme-axianyu")="Axianyu"
+          |  , Powered By Hexo.
