@@ -7,7 +7,7 @@ block content
     - var lastTime = ''
 
     div.archive
-      each post in archivesList.sort('date', -1).toArray()
+      each post in site.posts.sort('date', -1).toArray()
         .archive-item
           div
             div.archive-item__link__time(datetime=date_xml(post.date))= date(post.date) == lastTime ? '' : date(post.date)
