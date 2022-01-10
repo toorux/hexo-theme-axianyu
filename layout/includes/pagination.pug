@@ -1,0 +1,21 @@
+- var options = {prev_text: '<', next_text: '>'}
+
+
+#pagination
+  if(!is_post())
+    .pagination
+      !=paginator(options)
+  else
+    div.post-pagination
+        if(page.prev)
+            .prev-post.pull-left
+                div.post-pageurl
+                    a(href=url_for(page.prev.path))
+                        i.fa.fa-chevron-left   
+                        span=page.prev.title
+        if(page.next)
+            .next-post.pull-right
+                div.post-pageurl
+                    a(href=url_for(page.next.path))
+                        span=page.next.title 
+                        i.fa.fa-chevron-right

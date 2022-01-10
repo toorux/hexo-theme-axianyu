@@ -10,16 +10,22 @@ block content
   h2.post-title-wrapper
       p.post-title=page.title
   if page.date && page.source !== '_posts/about.md'
-      if (rp == 4)
-        div.post-date
+    if (rp == 4)
+      div.post-date
+        time(datetime=page.date.toJSON())=date(page.date, date_format)
+    else 
+      div.post-info
+        span
           time(datetime=page.date.toJSON())=date(page.date, date_format)
-      else 
-        div.post-info
-          span
-            time(datetime=page.date.toJSON())=date(page.date, date_format)
-          span.header-center
-          span.rp= rpList[rp - 1]
+        span.header-center
+        span.rp= rpList[rp - 1]
           
   if page.toc == true
     div.post-toc!= tocList
   .post-content!= page.content
+  div.post-tags
+    h3= `Tags`
+    each tag in page.tags.data 
+      i
+        a(href=url_for('/tags/' + tag.name))= `#${tag.name.toUpperCase() === 'CODE' ? '代码片段' : tag.name}`
+  include includes/pagination.pug
