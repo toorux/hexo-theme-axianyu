@@ -1,4 +1,5 @@
 - var lastTime = ''
+- var dateFormat = 'YYYY-MM'
 
 div.archive
     if (is_tag())
@@ -7,8 +8,8 @@ div.archive
         if post.source !== '_posts/about.md' || config.axianyu.hide_about_in_index !== true
             .archive-item
                 div
-                    div.archive-item__link__time(datetime=date_xml(post.date))= date(post.date) == lastTime ? '' : date(post.date)
-                    - lastTime = date(post.date)
+                    div.archive-item__link__time(datetime=date_xml(post.date))= date(post.date, dateFormat) == lastTime ? '' : date(post.date, dateFormat)
+                    - lastTime = date(post.date, dateFormat)
                     a.archive-item__link(href=url_for(post.path))
                         div.archive-item__link__title=post.title || 'No Title'
     include pagination.pug
