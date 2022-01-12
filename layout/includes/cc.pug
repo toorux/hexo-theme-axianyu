@@ -1,0 +1,39 @@
+
+
+- var cc = page.cc != undefined ? page.cc : (config.axianyu.def_cc != undefined ? config.axianyu.def_cc : 1)
+- var ccEnName = ['0', 'BY', 'BY-NC', 'BY-ND', 'BY-NC-ND', 'BY-SA', 'BY-NC-SA']
+- var ccCnName = ['公有领域', '署名', '署名-非商业性使用', '署名-禁止演绎', '署名-非商业性使用-禁止演绎', '署名-相同方式共享', '署名-非商业性使用-相同方式共享']
+- var author = page.author || config.axianyu.cc_author || config.author
+- var ccFullName = `CC ${ccEnName[cc]} 4.0`
+
+div.cc-license 
+    div.cc-post-title= page.title
+    div.cc-post-url
+        a(href= page.permalink)= page.permalink
+    div.cc-post-detail 
+        span.cc-post-detail-item.cc-post-detail-author
+            div.cc-post-detail-item-title 
+                | 本文作者
+            div.cc-post-detail-item-value= author 
+        span.cc-post-detail-item.cc-post-detail-date
+            div.cc-post-detail-item-title 
+                | 发布时间
+            div.cc-post-detail-item-value= date(page.date, 'YYYY-MM-DD') 
+        span.cc-post-detail-item.cc-post-detail-license
+            div.cc-post-detail-item-title 
+                | 许可协议
+            div.cc-post-detail-item-value
+                a.cc-license-name(href=`https://creativecommons.org/licenses/${cc ? ccEnName[cc].toLowerCase() : 'zero'}/${cc ? '4.0' : '1.0'}/deed.zh`)= `CC ${ccEnName[cc]} 4.0` 
+    div.cc-post-desc= `本文采用 [CC ${ccCnName[cc]} 4.0] 协议, 转载或引用本文时请遵守许可协议!`
+
+script.
+    var postInfo = { 
+        license: '!{ccFullName}',
+        author: '!{author}',
+        url: '!{page.permalink}',
+    }
+
+
+
+
+

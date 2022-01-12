@@ -5,12 +5,14 @@ block content
   - var tocList = toc(page.content)
   - var rp = page.rp || config.def_rp || 4
   - var rpList = ['禁止转载', '需授权后转载', '转载请注明来源']
+  - var cc = page.cc != undefined ? page.cc : (config.axianyu.def_cc != undefined ? config.axianyu.def_cc : 1)
+  - var ccEnName = ['CC0', 'CC BY', 'CC BY-NC', 'CC BY-ND', 'CC BY-NC-ND', 'CC BY-SA', 'CC BY-NC-SA']
 
   .post-item
   h2.post-title-wrapper
       p.post-title=page.title
   if page.date && page.source !== '_posts/about.md'
-    if (rp == 4)
+    if (rp == 4 && config.axianyu.use_cc != true)
       div.post-date
         time(datetime=page.date.toJSON())=date(page.date, date_format)
     else 
@@ -18,7 +20,11 @@ block content
         span
           time(datetime=page.date.toJSON())=date(page.date, date_format)
         span.header-center
-        span.rp= rpList[rp - 1]
+        if (config.axianyu.use_cc)
+          span.license
+            a(href='#license')= ccEnName[cc]
+        else 
+          span.rp= rpList[rp - 1]
           
   if page.toc == true
     div.post-toc!= tocList
@@ -28,4 +34,7 @@ block content
     each tag in page.tags.data 
       i
         a(href=url_for('/tags/' + tag.name))= `#${tag.name.toUpperCase() === 'CODE' ? '代码片段' : tag.name}`
+  if (config.axianyu.use_cc)
+    a(name="license")
+    include includes/cc.pug
   include includes/pagination.pug
