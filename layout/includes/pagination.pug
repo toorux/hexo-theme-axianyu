@@ -1,4 +1,6 @@
 - var options = {prev_text: '<', next_text: '>'}
+- var prev = page.prev.source === '_posts/about.md' ? page.prev.prev : page.prev
+- var next = page.next.source === '_posts/about.md' ? page.next.next : page.next
 
 
 #pagination
@@ -7,15 +9,15 @@
       !=paginator(options)
   else
     div.post-pagination
-        if(page.prev)
+        if(prev)
             .prev-post.pull-left
                 div.post-pageurl
-                    a(href=url_for(page.prev.path))
+                    a(href=url_for(prev.path))
                         i.fa.fa-chevron-left   
-                        span=page.prev.title
-        if(page.next)
+                        span=prev.title
+        if(next)
             .next-post.pull-right
                 div.post-pageurl
-                    a(href=url_for(page.next.path))
-                        span=page.next.title 
+                    a(href=url_for(next.path))
+                        span=next.title 
                         i.fa.fa-chevron-right
