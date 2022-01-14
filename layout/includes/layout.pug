@@ -8,10 +8,9 @@ html(lang=config.language)
     meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
     meta(name='renderer', content='webkit')
     meta(name='theme-color', content='#FFFFFF')
-    title= `${pageTitle}${config.title ? ' | ' + config.title : ''}`
+    title= `${pageTitle}${config.title && !is_home() ? ' | ' + config.title : ''}`
     link(rel='stylesheet', href='/css/normalize.css')
     <link rel="stylesheet" href="/css/heti.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     if theme.stylesheets !== undefined && theme.stylesheets.length > 0
       each url in theme.stylesheets
@@ -20,7 +19,7 @@ html(lang=config.language)
   body
     != js('/js/axianyu.js')
     div.header
-      a.email-link(href='/')
+      a.home-link(href='/')
         span
           |Home
       span.header-center
@@ -29,17 +28,21 @@ html(lang=config.language)
           span
             |Email
       if config.axianyu.show_about == true
-        a.subscribe-link(href=config.axianyu.about_url || "/about")
+        a.about-link(href=config.axianyu.about_url || "/about")
           span
             |About
       if config.axianyu.show_rss == true
         a.subscribe-link(href="/atom.xml")
           span
             |RSS
-    div.content
+    div.content.heti
       block content
     div.footer
         div.footer-copyright
           | Theme By 
           a(href="https://github.com/kgysf/hexo-theme-axianyu")="Axianyu"
           |  , Powered By Hexo.
+    != js('//unpkg.com/heti/umd/heti-addon.min.js')
+    script.
+      const heti = new Heti('.heti');
+      heti.autoSpacing();

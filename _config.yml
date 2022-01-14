@@ -18,3 +18,4 @@ favicon: /favicon.ico
 # stylesheets loaded in the <head>
 stylesheets:
 - /css/hexo-theme-adoubi.css
+- /css/heti-reset.css
