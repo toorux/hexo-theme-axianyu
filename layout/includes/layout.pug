@@ -35,14 +35,15 @@ html(lang=config.language)
         a.subscribe-link(href="/atom.xml")
           span
             |RSS
-    div.content.heti
+    div.content.heti1
       block content
     div.footer
         div.footer-copyright
           | Theme By 
           a(href="https://github.com/kgysf/hexo-theme-axianyu")="Axianyu"
           |  , Powered By Hexo.
-    != js('//unpkg.com/heti/umd/heti-addon.min.js')
+    //- != js('//unpkg.com/heti/umd/heti-addon.min.js')
+    != js('/js/heti-addon.min.js')
     script.
-      const heti = new Heti('.heti');
+      const heti = new Heti('.heti1');
       heti.autoSpacing();
