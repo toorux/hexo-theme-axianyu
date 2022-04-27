@@ -4,7 +4,7 @@
 
 主题使用 [赫蹏（hètí）][7] 优化文字排版, 中英文混排优化, 无论你是否在中西文之间留有空格的习惯, 都会自动统一蹭标准间距(1/4 字宽的空白); 自动对中文标点进行间距挤压。
 
-> 主题所使用的 heti.js 非原版， 经过适配主题处理过，[仓库地址][8]
+> 主题所使用的 heti.js 非原版， 经过适配主题处理过
 
 内置CC许可协议设置、文章许可协议信息展示以及复制追加版权信息功能，具体用法请看版权保护部分。
 
@@ -40,7 +40,7 @@ hexo-theme-axianyu developed with hexo 6.0
 
 clone 主题到themes文件夹中, 改名为axianyu
 
-    git clone https://github.com/kgysf/hexo-theme-axianyu.git themes/axianyu
+    git clone https://github.com/toorux/hexo-theme-axianyu.git themes/axianyu
 
 修改站点配置文件:
 
@@ -195,5 +195,4 @@ Keep `Theme By Axianyu , Powered By Hexo.` in footer and do whatever you want.
 [5]: https://developer.apple.com/fonts/
 [6]: https://necolas.github.io/normalize.css/
 [7]: https://github.com/sivan/heti
-[8]: https://github.com/kgysf/heti
 
